@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+# Vista de ejemplo para la página principal
+def home(request):
+    return HttpResponse("Bienvenido a la API de Mathplay")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('admin_api.urls')),
+    path('api/', include('admin_api.urls')),  # Incluye las rutas de `admin_api` en `/api/`
+    path('', home),  # Ruta para la página de bienvenida en la raíz
 ]
